@@ -2,15 +2,14 @@ version: '3'
 services:
   
   backend:
-    build:
-      context: .
+    image: koushikreddy24/flask-mysql-app:latest
     ports:
       - "5000:5000"
     environment:
       MYSQL_HOST: mysql
-      MYSQL_USER: admin
+      MYSQL_USER: root
       MYSQL_PASSWORD: admin
-      MYSQL_DB: myDb
+      MYSQL_DB: mydb
     depends_on:
       - mysql
 
@@ -19,9 +18,9 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: myDb
-      MYSQL_USER: admin
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: root
       MYSQL_PASSWORD: admin
     volumes:
       - ./message.sql:/docker-entrypoint-initdb.d/message.sql   # Mount sql script into container's /docker-entrypoint-initdb.d directory to get table automatically created
